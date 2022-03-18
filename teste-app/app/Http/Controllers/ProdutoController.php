@@ -46,4 +46,15 @@ class ProdutoController extends Controller
         $produto = Produto::find($id)->delete();
         return redirect('/ver-produto')->with('status', 'Produto foi excluido com sucesso !');
     }
+    public function pesquisar_produto(Request $request)
+    {
+        if (!$request->filled('pesquisa')) {
+            return redirect('/')->with('status', 'Por favor preencha o campo de pesquisa !');
+        }
+        $pesquisa = $request->input('pesquisa');
+
+        $produtos = Produto::query()
+            ->where('nome', 'LIKE', "%$pesquisa%")->orderBy('id', 'DESC')->get();
+        return view('pesquisar', compact('produtos'));
+    }
 }

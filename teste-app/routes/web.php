@@ -25,3 +25,4 @@ Route::get('/ver-produto', [ProdutoController::class, 'ver']);
 Route::get('/deletar-produto/{id}', [ProdutoController::class, 'deletar']);
 Route::get('/editar-produto/{id}', [ProdutoController::class, 'v_editar']);
 Route::post('/editar-produto/{id}', [ProdutoController::class, 'editar']);
+Route::get('/pesquisar-produto', [ProdutoController::class, 'pesquisar_produto'])->name('pesquisa');
